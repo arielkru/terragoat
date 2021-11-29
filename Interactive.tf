@@ -1,5 +1,12 @@
 resource "aws_s3_bucket" "resource2" {
   # 7 new errors
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "yuda"
+      }
+    }
+  }
 }
 
 
