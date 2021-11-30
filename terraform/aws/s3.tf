@@ -89,3 +89,33 @@ resource "aws_s3_bucket" "logs" {
     Environment = local.resource_prefix.value
   }
 }
+
+
+resource "aws_s3_bucket" "example1-noblocks" {
+}
+
+resource "aws_s3_bucket" "example2-wrongvalues" {
+  versioning {
+    enabled = false
+  }
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm     = "yuda"
+        kms_master_key_id = "yuda"
+      }
+    }
+  }
+  force_destroy = false
+}
+
+resource "aws_s3_bucket" "example2-enptyblocks" {
+  versioning {
+  }
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+      }
+    }
+  }
+}
