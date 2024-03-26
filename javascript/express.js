@@ -10,6 +10,16 @@ const options = {
   data: qs.stringify(data),
   url: "http://google.com"
 };
+
+const app = express();
+
+app.get('/user', (req, res) => {
+  const userId = req.query.id;
+  baz(userId,0)
+  res.send(`User ID: ${userId}`);
+});
+
+
 axios(options);
 express.csrf();
 express.methodOverride();
